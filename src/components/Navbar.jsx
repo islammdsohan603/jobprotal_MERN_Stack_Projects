@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TbMenuDeep } from 'react-icons/tb';
@@ -9,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const pathname = usePathname();
   const navItems = [
     { name: 'Find a Job', link: '/find-a-job' },
     { name: 'Companies', link: '/companies' },
@@ -69,16 +70,34 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex items-center gap-6">
-              {navItems.map(item => (
-                <li key={item.name}>
-                  <Link
-                    href={item.link}
-                    className="hover:text-blue-400 transition-colors duration-300"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+              {navItems.map(item => {
+                const isActive = pathname === item.link;
+
+                return (
+                  <li key={item.name} className="relative">
+                    <Link
+                      href={item.link}
+                      className={`py-2 transition-colors duration-300 ${
+                        isActive ? 'text-blue-400' : 'hover:text-blue-400'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-navbar"
+                        className="absolute left-0 right-0 -bottom-1 h-[3px] bg-blue-500 rounded-full"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 350,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="flex items-center gap-4">
@@ -99,8 +118,12 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Toggle */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
-            {isOpen ? <MdClose size={28} /> : <TbMenuDeep size={28} />}
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden  ">
+            {isOpen ? (
+              <MdClose size={28} className="cursor-pointer" />
+            ) : (
+              <TbMenuDeep size={28} className="cursor-pointer" />
+            )}
           </button>
         </div>
       </nav>
@@ -128,32 +151,55 @@ const Navbar = () => {
             >
               {/* Close Button */}
               <div className="flex justify-end mb-10">
-                <button onClick={() => setIsOpen(false)} className="text-white">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-white cursor-pointer"
+                >
                   <MdClose size={28} />
                 </button>
               </div>
 
               {/* Menu Items */}
-              <ul className="space-y-6">
-                {navItems.map((item, index) => (
-                  <motion.li
-                    key={item.name}
-                    custom={index}
-                    variants={itemVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    <Link
-                      href={item.link}
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-white hover:text-blue-400 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
+              <ul className="space-y-3">
+                {navItems.map((item, index) => {
+                  const isActive = pathname === item.link;
 
+                  return (
+                    <motion.li
+                      key={item.name}
+                      custom={index}
+                      variants={itemVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="relative list-none"
+                    >
+                      <Link
+                        href={item.link}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center px-4 py-3 rounded-xl transition-all duration-300 ${
+                          isActive
+                            ? 'bg-blue-500/20 text-blue-400'
+                            : 'text-white hover:bg-gray-800'
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-mobile-link"
+                          className="absolute bottom-0 left-4 right-4 h-[3px] bg-blue-500 rounded-full"
+                          transition={{
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </motion.li>
+                  );
+                })}
+              </ul>
               {/* Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
