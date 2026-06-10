@@ -9,13 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@better-auth/mongo-adapter": "^1.6.15",
     "@heroui/button": "^2.2.32",
     "@heroui/navbar": "^2.2.30",
     "@heroui/react": "^3.1.0",
     "@heroui/styles": "^3.1.0",
     "aos": "^2.3.4",
+    "better-auth": "^1.6.15",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.17.0",
+    "mongodb": "^7.3.0",
     "next": "16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
