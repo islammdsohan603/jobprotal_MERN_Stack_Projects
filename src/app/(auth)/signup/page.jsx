@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
+import { Description, Label, Radio, RadioGroup } from '@heroui/react';
 
 export default function SignUpPage() {
   const router = useRouter();
