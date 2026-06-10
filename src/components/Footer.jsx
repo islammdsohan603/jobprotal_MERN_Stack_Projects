@@ -11,13 +11,7 @@ const linkHover = {
 
 export default function Footer() {
   return (
-    <motion.footer
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="border-t border-gray-800 bg-black py-12"
-    >
+    <footer className="border-t border-gray-800 bg-black py-12">
       <div className="container mx-auto px-6">
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
@@ -115,6 +109,6 @@ export default function Footer() {
           © 2026 JobPortal. All rights reserved.
         </motion.div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }
