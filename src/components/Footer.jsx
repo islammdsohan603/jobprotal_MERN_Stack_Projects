@@ -12,7 +12,7 @@ const linkHover = {
 export default function Footer() {
   return (
     <footer className="border-t border-gray-800 bg-black py-12">
-      <div className="container mx-auto px-6">
+      <div className="w-10/12 mx-auto px-6">
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div>

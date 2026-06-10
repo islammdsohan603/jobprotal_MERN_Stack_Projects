@@ -26,7 +26,7 @@ export default function Banner() {
       <div className="absolute inset-0 bg-black/70 z-0" />
 
       {/* Glow Effect */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[600px] bg-blue-600/10 blur-[120px] rounded-full z-0" />
+      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-10/12 mx-auto h-[600px] bg-blue-600/10 blur-[120px] rounded-full z-0" />
 
       <div className="relative z-10 container mx-auto px-4 pt-20 pb-20 flex flex-col items-center">
         {/* Badge */}
