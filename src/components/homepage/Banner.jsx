@@ -15,10 +15,7 @@ export default function Banner() {
     <section className="pt-10 md:pt-20 relative min-h-screen overflow-hidden bg-black text-white">
       {/* Background Globe */}
       <div
-        className="
-          absolute z-0 inset-0 w-full h-full
-          bg-center bg-cover bg-no-repeat
-        "
+        className="absolute z-0 inset-0 w-full h-full bg-center bg-cover bg-no-repeat"
         style={{ backgroundImage: "url('/globe.png')" }}
       />
 
