@@ -43,14 +43,14 @@ export function DashboardSidebar() {
       <Drawer>
         <Button variant="secondary" className={' lg:hidden'}>
           <Bars />
-          Menu
+          Sidebar
         </Button>
         <Drawer.Backdrop>
           <Drawer.Content placement="left">
             <Drawer.Dialog>
               <Drawer.CloseTrigger />
               <Drawer.Header>
-                <Drawer.Heading>Navigation</Drawer.Heading>
+                <Drawer.Heading>Menu</Drawer.Heading>
               </Drawer.Header>
               <Drawer.Body>{navContant}</Drawer.Body>
             </Drawer.Dialog>
