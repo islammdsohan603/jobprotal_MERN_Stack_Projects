@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ChevronDown,
@@ -54,7 +54,7 @@ export default function CompanyForm() {
   };
 
   // =========================
-  // IMGBB UPLOAD FUNCTION
+  // IMGBB UPLOAD
   // =========================
   const uploadImage = async file => {
     const apiKey = process.env.NEXT_PUBLIC_IMAGE_UPLOAD_API;
@@ -77,7 +77,7 @@ export default function CompanyForm() {
   };
 
   // =========================
-  // SUBMIT HANDLER
+  // SUBMIT
   // =========================
   const handleSubmit = async e => {
     e.preventDefault();
@@ -102,7 +102,7 @@ export default function CompanyForm() {
 
       const res = await getCompanyData(payload);
 
-      if (res.insertedId) {
+      if (res?.insertedId) {
         alert('Company registered successfully');
         router.push('/dashboard/recruiter');
       }
@@ -121,124 +121,104 @@ export default function CompanyForm() {
     >
       <div className="space-y-6 p-8">
         {/* Company Name */}
-        <div>
-          <label className="mb-2 block text-sm font-medium">Company Name</label>
-          <input
-            type="text"
-            value={formData.companyName}
-            onChange={e => handleChange('companyName', e.target.value)}
-            className="h-12 w-full rounded-xl border px-4 outline-none focus:border-primary"
-            placeholder="e.g. Acme Corporation"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Company Name"
+          value={formData.companyName}
+          onChange={e => handleChange('companyName', e.target.value)}
+          className="h-12 w-full rounded-xl border px-4"
+        />
 
         {/* Industry */}
-        <div className="relative">
-          <label className="mb-2 block text-sm font-medium">
-            Industry / Category
-          </label>
-
-          <select
-            value={formData.industry}
-            onChange={e => handleChange('industry', e.target.value)}
-            className="h-12 w-full appearance-none rounded-xl border px-4 outline-none focus:border-primary"
-          >
-            {industries.map(item => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-
-          <ChevronDown className="absolute right-4 top-10 h-4 w-4 text-gray-500" />
-        </div>
+        <select
+          value={formData.industry}
+          onChange={e => handleChange('industry', e.target.value)}
+          className="h-12 w-full rounded-xl border px-4"
+        >
+          {industries.map(i => (
+            <option key={i}>{i}</option>
+          ))}
+        </select>
 
         {/* Website + Location */}
         <div className="grid gap-5 md:grid-cols-2">
-          <div className="relative">
-            <Globe className="absolute left-3 top-4 h-4 w-4 text-gray-500" />
-            <input
-              type="url"
-              placeholder="https://company.com"
-              value={formData.website}
-              onChange={e => handleChange('website', e.target.value)}
-              className="h-12 w-full rounded-xl border px-10 outline-none focus:border-primary"
-            />
-          </div>
+          <input
+            type="url"
+            placeholder="Website"
+            value={formData.website}
+            onChange={e => handleChange('website', e.target.value)}
+            className="h-12 rounded-xl border px-4"
+          />
 
-          <div className="relative">
-            <LocationArrow className="absolute left-3 top-4 h-4 w-4 text-gray-500" />
-            <input
-              type="text"
-              placeholder="Dhaka, Bangladesh"
-              value={formData.location}
-              onChange={e => handleChange('location', e.target.value)}
-              className="h-12 w-full rounded-xl border px-10 outline-none focus:border-primary"
-            />
-          </div>
+          <input
+            type="text"
+            placeholder="Location"
+            value={formData.location}
+            onChange={e => handleChange('location', e.target.value)}
+            className="h-12 rounded-xl border px-4"
+          />
         </div>
 
-        {/* Employee + Logo */}
-        <div className="grid gap-5 md:grid-cols-2">
-          <select
-            value={formData.employeeCount}
-            onChange={e => handleChange('employeeCount', e.target.value)}
-            className="h-12 w-full rounded-xl border px-4 outline-none focus:border-primary"
-          >
-            {employeeRanges.map(item => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
+        {/* Employee */}
+        <select
+          value={formData.employeeCount}
+          onChange={e => handleChange('employeeCount', e.target.value)}
+          className="h-12 w-full rounded-xl border px-4"
+        >
+          {employeeRanges.map(i => (
+            <option key={i}>{i}</option>
+          ))}
+        </select>
 
-          {/* ================= LOGO UPLOAD WITH PREVIEW ================= */}
-          <label className="flex h-24 cursor-pointer items-center gap-4 rounded-xl border border-dashed px-4 hover:border-primary overflow-hidden">
-            {logoPreview ? (
-              <Image
-                src={logoPreview}
-                width={50}
-                height={25}
-                alt="Logo Preview"
-                className="h-16 w-16 rounded-lg object-cover border"
-              />
-            ) : (
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border">
-                <ArrowUpFromSquare className="h-5 w-5" />
-              </div>
-            )}
-
-            <div>
-              {logoPreview ? (
-                <p className="font-medium">Change Logo</p>
-              ) : (
-                <>
-                  <p className="font-medium">Upload Logo</p>
-                  <p className="text-xs text-gray-500">PNG, JPG up to 5MB</p>
-                </>
-              )}
+        {/* LOGO UPLOAD + PREVIEW FIXED */}
+        <label className="flex h-24 cursor-pointer items-center gap-4 rounded-xl border px-4 overflow-hidden">
+          {logoPreview ? (
+            <Image
+              src={logoPreview}
+              width={50}
+              height={50}
+              alt="preview"
+              className="h-16 w-16 rounded-lg object-cover border"
+            />
+          ) : (
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg border">
+              <ArrowUpFromSquare className="h-5 w-5" />
             </div>
+          )}
 
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={e => {
-                const file = e.target.files?.[0];
+          <div>
+            {logoPreview ? (
+              <p className="font-medium">Change Logo</p>
+            ) : (
+              <>
+                <p className="font-medium">Upload Logo</p>
+                <p className="text-xs text-gray-500">PNG / JPG up to 5MB</p>
+              </>
+            )}
+          </div>
 
-                handleChange('logo', file);
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={e => {
+              const file = e.target.files?.[0];
 
-                if (file) {
-                  setLogoPreview(URL.createObjectURL(file));
-                }
-              }}
-            />
-          </label>
-        </div>
+              if (!file) return;
+
+              handleChange('logo', file);
+              setLogoPreview(URL.createObjectURL(file));
+            }}
+          />
+        </label>
 
         {/* Description */}
         <textarea
           rows={5}
-          placeholder="Company description..."
+          placeholder="Description"
           value={formData.description}
           onChange={e => handleChange('description', e.target.value)}
-          className="w-full rounded-xl border p-4 outline-none focus:border-primary"
+          className="w-full rounded-xl border p-4"
         />
       </div>
 
@@ -246,7 +226,7 @@ export default function CompanyForm() {
       <div className="flex justify-end border-t px-8 py-5">
         <button
           type="submit"
-          className="rounded-xl bg-primary px-6 py-3 font-medium text-white hover:opacity-90"
+          className="rounded-xl bg-primary px-6 py-3 text-white"
         >
           Register Company
         </button>

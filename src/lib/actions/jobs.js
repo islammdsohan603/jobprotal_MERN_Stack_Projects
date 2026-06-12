@@ -28,14 +28,18 @@ export const getCompanyData = async (companyData) => {
     const res = await fetch(`${baseUrl}/api/company`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(companyData)
+      body: JSON.stringify(companyData),
+    });
 
-    })
+    if (!res.ok) {
+      throw new Error('Failed to post company data');
+    }
 
-    return await res.json()
+    return await res.json();
   } catch (error) {
-
+    console.log('data post error:', error);
+    throw error;
   }
-}
+};
