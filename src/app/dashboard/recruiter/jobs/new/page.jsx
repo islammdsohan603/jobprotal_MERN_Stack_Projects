@@ -72,7 +72,6 @@ export default function PostJobPage() {
       status: 'active',
       isPubliclyVisible: true,
     };
-    console.log('data', payload);
 
     const res = await createJob(payload);
     if (res.insertedId) {

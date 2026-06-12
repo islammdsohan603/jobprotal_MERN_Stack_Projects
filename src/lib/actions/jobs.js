@@ -12,7 +12,7 @@ export const createJob = async (newJobData) => {
       },
       body: JSON.stringify(newJobData)
     })
-    console.log(res)
+
 
     return await res.json()
 
