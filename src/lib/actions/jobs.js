@@ -21,3 +21,21 @@ export const createJob = async (newJobData) => {
     return { error: `Failed to connect to backend: ${error.message}` };
   }
 }
+
+
+export const getCompanyData = async (companyData) => {
+  try {
+    const res = await fetch(`${baseUrl}/api/company`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(companyData)
+
+    })
+
+    return await res.json()
+  } catch (error) {
+
+  }
+}
