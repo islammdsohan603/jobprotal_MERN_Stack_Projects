@@ -147,8 +147,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-30 border-b border-white/10 bg-gray-950/85 py-3 text-white shadow-lg shadow-gray-950/10 backdrop-blur-xl">
-        <div className="mx-auto flex w-11/12 max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 shadow-2xl shadow-black/10 md:px-5">
+      <nav className="sticky top-0 z-30 border-b border-white/10 bg-[#05070d]/85 py-3 text-white shadow-lg shadow-black/20 backdrop-blur-xl">
+        <div className="mx-auto flex w-11/12 max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 shadow-2xl shadow-black/20 ring-1 ring-white/[0.03] md:px-5">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
@@ -156,13 +156,13 @@ const Navbar = () => {
               alt="logo"
               width={120}
               height={50}
-              className="cursor-pointer"
+              className="cursor-pointer drop-shadow-[0_8px_24px_rgba(37,99,235,0.18)]"
             />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden items-center gap-8 md:flex">
-            <ul className="flex items-center gap-2 rounded-full border border-white/10 bg-gray-950/40 p-1">
+            <ul className="flex items-center gap-2 rounded-full border border-white/10 bg-black/30 p-1 shadow-inner shadow-white/[0.03]">
               {navItems.map(item => {
                 const isActive = pathname === item.link;
 

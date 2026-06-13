@@ -11,3 +11,18 @@ export const getCompanyJobs = async (companyId, status = 'active') => {
     console.log('Get Data', error)
   }
 }
+
+
+export const getNewComapnyJobs = async () => {
+
+  try {
+
+    const res = await fetch(`${baseUrl}/api/company`)
+    return await res.json()
+
+  }
+  catch (error) {
+    console.log('Register Company ', error)
+  }
+
+}

@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 
 export default function FeaturesSection() {
-  // ফিচার ডাটা এরি
   const features = [
     {
       title: 'Smart Search',
@@ -58,7 +57,6 @@ export default function FeaturesSection() {
     },
   ];
 
-  // অ্যানিমেশন ভেরিয়েন্ট
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -75,22 +73,20 @@ export default function FeaturesSection() {
   };
 
   return (
-    <section className="relative py-24 bg-[#0a0a0a] text-white overflow-hidden">
-      {/* ব্যাকগ্রাউন্ডে হালকা গ্লো ইফেক্ট */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)] pointer-events-none" />
+    <section className="relative overflow-hidden bg-[#070a12] py-24 text-white">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-full w-full -translate-x-1/2 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* হেডার সেকশন */}
-        <div className="text-center mb-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center gap-3 text-xs md:text-sm font-bold tracking-[0.2em] text-blue-500 mb-4"
+            className="mb-4 flex items-center justify-center gap-3 text-xs font-bold tracking-[0.2em] text-blue-400 md:text-sm"
           >
-            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-            <span>FEATURES JOB</span>
-            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+            <div className="size-1.5 rounded-full bg-blue-400" />
+            <span>FEATURED TOOLKIT</span>
+            <div className="size-1.5 rounded-full bg-blue-400" />
           </motion.div>
 
           <motion.h2
@@ -98,42 +94,38 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mx-auto"
+            className="mx-auto max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl"
           >
             Everything you need <br className="hidden md:block" /> to succeed
           </motion.h2>
         </div>
 
-        {/* ফিচারস গ্রিড */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
         >
           {features.map((feature, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="flex items-start gap-4 group"
+              className="group flex min-h-40 items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-lg shadow-black/10 transition-colors hover:bg-white/[0.055]"
             >
-              {/* আইকন বক্স */}
-              <div className="relative flex-shrink-0">
-                <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-2xl bg-[#1a1a1a] border border-white/10 text-gray-400 group-hover:text-blue-500 group-hover:border-blue-500/50 transition-all duration-300 shadow-lg">
+              <div className="relative shrink-0">
+                <div className="flex size-12 items-center justify-center rounded-2xl border border-white/10 bg-[#111827] text-gray-400 shadow-lg transition-all duration-300 group-hover:border-blue-500/50 group-hover:text-blue-400 md:size-14">
                   {feature.icon}
                 </div>
-                {/* হোভার গ্লো ইফেক্ট */}
-                <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 rounded-full bg-blue-500/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
               </div>
 
-              {/* টেক্সট কন্টেন্ট */}
               <div>
-                <h3 className="text-lg font-semibold mb-1 group-hover:text-blue-400 transition-colors">
+                <h3 className="mb-1 text-lg font-semibold transition-colors group-hover:text-blue-300">
                   {feature.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-gray-500">
                   {feature.description}
                 </p>
               </div>

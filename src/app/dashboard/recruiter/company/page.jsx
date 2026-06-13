@@ -1,34 +1,36 @@
-'use client';
+import CompanyPage from '@/components/companyinfo/CompanyData';
+import CompanyDataCard from '@/components/companyinfo/CompanyDataCard';
+import { getNewComapnyJobs } from '@/lib/api/jobs';
 
-import { useState } from 'react';
-import CompanyFormModal from '@/components/companyinfo/CompanyFormModal';
+const CompanyRegisterPage = async () => {
+  const result = await getNewComapnyJobs();
 
-export default function CompanyPage() {
-  const [open, setOpen] = useState(false);
+  const companies = result?.data || [];
 
   return (
-    <>
-      <button
-        onClick={() => setOpen(true)}
-        className="rounded-xl bg-primary px-5 py-3 text-white cursor-pointer"
-      >
-        Register New Company
-      </button>
-
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
-          <div className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl bg-transparent">
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute cursor-pointer right-4 top-4 text-xl"
-            >
-              ✕
-            </button>
-
-            <CompanyFormModal />
-          </div>
+    <div className="space-y-8 py-4">
+      <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-xl shadow-black/20 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            Company profile
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white">
+            Registered Companies
+          </h1>
+          <p className="mt-2 text-sm text-gray-400">
+            Manage company profiles connected to recruiter job posts.
+          </p>
         </div>
-      )}
-    </>
+        <CompanyPage />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {companies.map(card => (
+          <CompanyDataCard key={card._id} card={card} />
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+export default CompanyRegisterPage;

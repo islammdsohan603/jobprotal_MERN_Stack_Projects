@@ -2,6 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import {
+  ArrowUpRight,
+  BriefcaseBusiness,
+  MapPin,
+  WalletCards,
+} from 'lucide-react';
 
 const jobs = [
   {
@@ -11,7 +17,7 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/1',
   },
   {
@@ -21,7 +27,7 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/2',
   },
   {
@@ -31,7 +37,7 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/3',
   },
   {
@@ -41,7 +47,7 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/4',
   },
   {
@@ -51,7 +57,7 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/5',
   },
   {
@@ -61,16 +67,31 @@ const jobs = [
       'Showcase your commitment to diversity and inclusion by highlighting initiatives',
     location: 'New York, USA',
     jobType: 'Hybrid',
-    salary: '€25–€40/hour',
+    salary: '$25-$40/hour',
     applyUrl: '/apply/6',
   },
 ];
 
 export default function JobGrid() {
   return (
-    <div className="bg-[#020617]">
-      <div className="w-10/12 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-10">
+    <section className="bg-[#05070d] py-24">
+      <div className="mx-auto w-10/12 max-w-7xl">
+        <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-400">
+              Featured roles
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-5xl">
+              Curated openings for fast-moving teams
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-6 text-gray-400">
+            Explore high-quality roles from teams that are actively hiring right
+            now.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {jobs.map((job, index) => (
             <motion.div
               key={job.id}
@@ -86,36 +107,47 @@ export default function JobGrid() {
                 scale: 1.03,
                 transition: { duration: 0.2 },
               }}
-              className="bg-[#111827] p-6 rounded-2xl border border-white/10 text-white shadow-lg hover:border-blue-500/40 transition-all"
+              className="group rounded-2xl border border-white/10 bg-white/[0.055] p-6 text-white shadow-xl shadow-black/20 ring-1 ring-white/[0.03] transition-all hover:border-blue-500/40 hover:bg-white/[0.075]"
             >
-              <h3 className="text-xl font-bold mb-2">{job.title}</h3>
+              <div className="mb-5 flex items-center justify-between">
+                <div className="grid size-12 place-items-center rounded-2xl border border-white/10 bg-blue-500/10 text-blue-300">
+                  <BriefcaseBusiness size={22} />
+                </div>
+                <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+                  Hiring
+                </span>
+              </div>
 
-              <p className="text-gray-400 text-sm mb-4">{job.description}</p>
+              <h3 className="mb-2 text-xl font-bold">{job.title}</h3>
 
-              <div className="flex flex-wrap gap-3 mb-4 text-xs">
-                <span className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded-full">
-                  📍 {job.location}
+              <p className="mb-4 text-sm leading-6 text-gray-400">
+                {job.description}
+              </p>
+
+              <div className="mb-4 flex flex-wrap gap-3 text-xs text-gray-300">
+                <span className="flex items-center gap-1 rounded-full bg-white/5 px-2 py-1">
+                  <MapPin size={13} /> {job.location}
                 </span>
 
-                <span className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded-full">
-                  💼 {job.jobType}
+                <span className="flex items-center gap-1 rounded-full bg-white/5 px-2 py-1">
+                  <BriefcaseBusiness size={13} /> {job.jobType}
                 </span>
 
-                <span className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded-full">
-                  💰 {job.salary}
+                <span className="flex items-center gap-1 rounded-full bg-white/5 px-2 py-1">
+                  <WalletCards size={13} /> {job.salary}
                 </span>
               </div>
 
               <Link
                 href={job.applyUrl}
-                className="text-sm font-medium text-blue-400 hover:text-blue-300 transition flex items-center gap-1"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-blue-300 transition hover:text-blue-200"
               >
-                Apply Now →
+                Apply Now <ArrowUpRight size={16} />
               </Link>
             </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

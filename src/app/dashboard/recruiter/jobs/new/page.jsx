@@ -82,40 +82,42 @@ export default function PostJobPage() {
     }
   };
 
-  // Dark styles styled to match your image_988c20.png reference layout
   const textInputClass =
-    'w-full text-white bg-[#1c1c1e] border border-zinc-800 hover:bg-[#242426] focus:border-zinc-600 rounded-lg h-12 px-3 text-sm placeholder:text-zinc-600 outline-none transition-all';
+    'w-full text-white bg-white/[0.055] border border-white/10 hover:bg-white/[0.08] focus:border-blue-400 rounded-xl h-12 px-3 text-sm placeholder:text-zinc-600 outline-none transition-all focus:ring-2 focus:ring-blue-500/20';
   const textAreaClass =
-    'w-full text-white bg-[#1c1c1e] border border-zinc-800 hover:bg-[#242426] focus:border-zinc-600 rounded-lg p-3 text-sm placeholder:text-zinc-600 outline-none transition-all';
+    'w-full text-white bg-white/[0.055] border border-white/10 hover:bg-white/[0.08] focus:border-blue-400 rounded-xl p-3 text-sm placeholder:text-zinc-600 outline-none transition-all focus:ring-2 focus:ring-blue-500/20';
 
   const selectBoxClass = 'w-full';
   const triggerClasses =
-    'w-full flex items-center justify-between bg-[#1c1c1e] border border-zinc-800 hover:bg-[#242426] h-12 rounded-lg px-3 text-white transition-all text-sm outline-none data-[focused=true]:border-zinc-600 data-[invalid=true]:border-danger';
+    'w-full flex items-center justify-between bg-white/[0.055] border border-white/10 hover:bg-white/[0.08] h-12 rounded-xl px-3 text-white transition-all text-sm outline-none data-[focused=true]:border-blue-400 data-[invalid=true]:border-danger';
   const popoverClasses =
-    'bg-[#1c1c1e] border border-zinc-800 text-white rounded-lg shadow-xl p-1';
+    'bg-[#10131b] border border-white/10 text-white rounded-xl shadow-xl p-1';
   const listItemClasses =
-    'flex items-center justify-between p-2 rounded-md hover:bg-zinc-800 cursor-pointer text-sm text-zinc-200 outline-none data-[focused=true]:bg-zinc-800';
+    'flex items-center justify-between p-2 rounded-lg hover:bg-white/10 cursor-pointer text-sm text-zinc-200 outline-none data-[focused=true]:bg-white/10';
 
   return (
-    <div className="min-h-screen bg-[#0d0d0e] text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-[#121214] border border-zinc-900 rounded-xl p-8 shadow-2xl">
+    <div className="min-h-screen bg-[#05070d] px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-white/[0.04] p-8 shadow-2xl shadow-black/30">
         {/* Form Header block */}
-        <div className="border-b border-zinc-800 pb-6 mb-8">
-          <h1 className="text-2xl font-semibold tracking-tight">
+        <div className="mb-8 border-b border-white/10 pb-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            Hiring workspace
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight">
             Post a New Job
           </h1>
-          <p className="text-zinc-400 text-sm mt-1">
+          <p className="mt-2 text-sm text-zinc-400">
             Fill out the details below to publish your open position.
           </p>
 
           {/* Company verification status panel */}
-          <div className="mt-4 inline-flex items-center gap-2 bg-zinc-900/50 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-zinc-400">
+          <div className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs text-zinc-400">
             <Briefcase size={14} className="text-zinc-500" />
             Posting as:{' '}
             <span className="font-semibold text-zinc-300">
               {mockCompany.name}
             </span>
-            <span className="text-emerald-500 font-medium bg-emerald-950/30 px-1.5 py-0.5 rounded border border-emerald-900/50">
+            <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 font-medium text-emerald-300">
               Approved
             </span>
           </div>
@@ -130,7 +132,7 @@ export default function PostJobPage() {
         >
           {/* SECTION 1: Job Information */}
           <Fieldset className="space-y-6 w-full">
-            <legend className="text-lg font-medium text-zinc-300 border-b border-zinc-900 w-full pb-2 mb-2">
+            <legend className="mb-2 w-full border-b border-white/10 pb-2 text-lg font-medium text-zinc-200">
               Job Information
             </legend>
 
@@ -328,14 +330,14 @@ export default function PostJobPage() {
                         className={listItemClasses}
                         textValue="EUR"
                       >
-                        EUR (€)
+                        EUR (EUR)
                       </ListBox.Item>
                       <ListBox.Item
                         id="GBP"
                         className={listItemClasses}
                         textValue="GBP"
                       >
-                        GBP (£)
+                        GBP (GBP)
                       </ListBox.Item>
                     </ListBox>
                   </Select.Popover>
@@ -414,7 +416,7 @@ export default function PostJobPage() {
 
           {/* SECTION 2: Job Description */}
           <Fieldset className="space-y-6 w-full">
-            <legend className="text-lg font-medium text-zinc-300 border-b border-zinc-900 w-full pb-2 mb-2">
+            <legend className="mb-2 w-full border-b border-white/10 pb-2 text-lg font-medium text-zinc-200">
               Job Details & Description
             </legend>
 
@@ -471,17 +473,17 @@ export default function PostJobPage() {
           </Fieldset>
 
           {/* Form Actions */}
-          <div className="flex justify-end gap-3 pt-4 border-t border-zinc-800 w-full">
+          <div className="flex w-full justify-end gap-3 border-t border-white/10 pt-4">
             <Button
               type="button"
               variant="bordered"
-              className="border-zinc-800 text-zinc-300 hover:bg-zinc-900 rounded-lg px-6 font-medium h-11"
+              className="h-11 rounded-xl border-white/10 px-6 font-medium text-zinc-300 hover:bg-white/10"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="bg-white text-black font-semibold hover:bg-zinc-200 rounded-lg px-6 transition-colors h-11"
+              className="h-11 rounded-xl bg-white px-6 font-semibold text-black transition-colors hover:bg-zinc-200"
             >
               Post Job
             </Button>
