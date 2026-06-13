@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 
 const CompanyDataCard = ({ card }) => {
-  console.log(card);
   return (
     <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.045] p-6 text-white shadow-xl shadow-black/20 transition-all hover:-translate-y-1 hover:border-blue-500/40">
       <div className="mb-5 flex items-start justify-between gap-4">
