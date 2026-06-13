@@ -66,7 +66,7 @@ export function DashboardSidebar() {
       </aside>
 
       <Drawer>
-        <Button variant="secondary" className="lg:hidden">
+        <Button variant="secondary" className=" mr-4 lg:hidden">
           <Bars />
           Sidebar
         </Button>
