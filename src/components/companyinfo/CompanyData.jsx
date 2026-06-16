@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import CompanyFormModal from '@/components/companyinfo/CompanyFormModal';
 
-export default function CompanyPage() {
+export default function CompanyPage({ recuiter }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,7 +25,7 @@ export default function CompanyPage() {
               x
             </button>
 
-            <CompanyFormModal />
+            <CompanyFormModal recuiter={recuiter} />
           </div>
         </div>
       )}

@@ -26,7 +26,7 @@ const employeeRanges = [
   '500+ employees',
 ];
 
-export default function CompanyForm() {
+export default function CompanyForm({ recuiter }) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
